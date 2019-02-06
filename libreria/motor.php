@@ -20,4 +20,24 @@
         }
         return $rs;
     }
+
+    function verificarUsuario($datos)
+    {
+        //Instanciando un objeto de mongoDB
+        $m = new MongoClient();
+        //La conexion 
+        $usuarios = $m->selectCollection('lareal','usuarios');
+        //cuando encuentre datos 
+        $usrs = $usuarios->find($datos);
+
+        $usr = $usrs->getNext();
+
+        if($usrs)
+        {
+            $_SESSION['facil_app_user'] = $usr;
+            return true;
+        }
+        return false;
+    }
 ?>
+

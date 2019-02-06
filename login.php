@@ -4,9 +4,24 @@
     include 'header.php';
 
     $mensaje="";
-?>
-    <form action="" method="POST" style="margin-top:50px;">
+    if($_POST)
+    {
         
+        if(verificarUsuario($_POST))
+        {
+            echo '<script> window.location="./" </script>';
+            exit();
+        }
+        else
+        {
+            $mensaje = "Usuario o clave no validos";
+        }
+        
+    }
+
+    
+?>
+    <form action="" method="POST" style="margin-top:50px;">        
         <div class="container" id="divLogin" style="margin:0 auto;">
             <div class="form-group">
                 <label for="email">Email</label>
